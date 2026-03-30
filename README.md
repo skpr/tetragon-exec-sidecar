@@ -1,7 +1,7 @@
-Tetragon Process Execution Logger
-=================================
+Tetragon Process Execution Sidecar
+==================================
 
-A Kubernetes sidecar for logging (and filtering) Tetragon process execution events.
+A Kubernetes sidecar for filtering, logging and guaging Tetragon process execution events.
 
 ## Configuration
 
