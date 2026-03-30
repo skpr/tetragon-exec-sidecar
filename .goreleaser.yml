@@ -1,0 +1,43 @@
+project_name: tetragon-exec-sidecar
+
+version: 2
+
+builds:
+  - id: skpr-tetragon-exec-sidecar
+    main: cmd/tetragon-exec-sidecar/main.go
+    binary: skpr-tetragon-exec-sidecar
+    ldflags:
+      - -extldflags '-static' -s -w
+    env:
+      - CGO_ENABLED=0
+    goos: [ linux ]
+    goarch: [ amd64, arm64 ]
+
+archives:
+  - ids:
+    - none
+
+checksum:
+  disable: true
+
+dockers_v2:
+  - id: skpr-tetragon-exec-sidecar
+    dockerfile: Dockerfile
+    ids:
+      - skpr-tetragon-exec-sidecar
+    images:
+      - "ghcr.io/skpr/tetragon-exec-sidecar"
+    <<: &docker_defaults
+      tags:
+        - "latest"
+        - "{{ .Commit }}"
+        - "{{ .Tag }}"
+      sbom: false
+      flags:
+        - "--pull"
+      platforms:
+        - linux/arm64
+        - linux/amd64
+
+changelog:
+  use: github-native
