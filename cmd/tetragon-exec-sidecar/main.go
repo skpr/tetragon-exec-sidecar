@@ -232,10 +232,10 @@ func main() {
 		},
 	}
 
-	cmd.PersistentFlags().StringVar(&o.Addr, "addr", env.String("SKPR_TETRAGON_EXEC_LOGGER_ADDR", "127.0.0.1:54321"), "Tetragon gRPC address host:port")
-	cmd.PersistentFlags().StringVar(&o.ConfigFile, "config-file", env.String("SKPR_TETRAGON_EXEC_LOGGER_CONFIG_FILE", "/etc/tetragon-exec-logger/config.yaml"), "Path to the config file")
-	cmd.PersistentFlags().DurationVar(&o.ConnectTimeout, "connect-timeout", env.Duration("SKPR_TETRAGON_EXEC_LOGGER_CONNECT_TIMEOUT", 30*time.Second), "Max time to wait for addr to open and gRPC to become ready")
-	cmd.PersistentFlags().StringVar(&o.MetricsAddr, "metrics-addr", env.String("SKPR_TETRAGON_EXEC_LOGGER_METRICS_ADDR", ":9090"), "Address to serve Prometheus metrics on")
+	cmd.PersistentFlags().StringVar(&o.Addr, "addr", env.String("SKPR_TETRAGON_EXEC_SIDECAR_ADDR", "127.0.0.1:54321"), "Tetragon gRPC address host:port")
+	cmd.PersistentFlags().StringVar(&o.ConfigFile, "config-file", env.String("SKPR_TETRAGON_EXEC_SIDECAR_CONFIG_FILE", "/etc/tetragon-exec-sidecar/config.yaml"), "Path to the config file")
+	cmd.PersistentFlags().DurationVar(&o.ConnectTimeout, "connect-timeout", env.Duration("SKPR_TETRAGON_EXEC_SIDECAR_CONNECT_TIMEOUT", 30*time.Second), "Max time to wait for addr to open and gRPC to become ready")
+	cmd.PersistentFlags().StringVar(&o.MetricsAddr, "metrics-addr", env.String("SKPR_TETRAGON_EXEC_SIDECAR_METRICS_ADDR", ":9090"), "Address to serve Prometheus metrics on")
 
 	if err := cmd.Execute(); err != nil {
 		panic(err)
